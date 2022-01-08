@@ -11,7 +11,7 @@
 
         <p class="gx-3 col-8"><span class="fs-4 ">{{item.subject}} :</span> <br> {{item.reason}}</p>
         <p class="text-dark-50 col-2 float-end fs-6">
-        <form method="post">{%csrf_token%}<button type="input" class="btn btn-primary-s p-1" formaction="{{ls.id}}/delete/{{item.id}}" id="{{item.id}}">X</button></form><br>{{item.date_created}}</p>
+        <form method="post">{%csrf_token%}<button type="input" name="deletor" class="btn btn-primary-s p-1" formaction="{{ls.id}}/delete/{{item.id}}" id="{{item.id}}">X</button></form><br>{{item.date_created}}</p>
     </li>
 
     {%endfor%}
@@ -22,7 +22,7 @@
     <form method="post" action="#" class="form-control form-md-inline bg-secondary-50">
         {%csrf_token%}
         {{form.as_p}}
-        <button type="submit" name="save">Add New Subject</button>
+        <button type="submit" name="save">Add New Log</button>
     </form>
 </div>
 {% endblock%}

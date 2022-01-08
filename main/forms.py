@@ -7,7 +7,7 @@ class CreateNewPerson(forms.Form):
     
 class AddSubjectToPerson(forms.Form):
    
-    subject = forms.CharField(label="Subject",max_length=30)
-    reason = forms.CharField(label="Reason for liking",max_length=200)
+    subject = forms.CharField(label="Log topic",max_length=30)
+    reason = forms.CharField(label="Description",max_length=200)
     
     

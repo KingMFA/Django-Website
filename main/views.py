@@ -6,7 +6,7 @@ import datetime
 # Create your views here.
 
 def index(request):
-    response = render(request,"main/base.html",{})
+    response = HttpResponseRedirect("/home/")
     return response
 
 def home(request):
@@ -19,7 +19,7 @@ def home(request):
 def list(request,id):
   
     ls = Person.objects.get(id=id)
-    if(request.method == "POST"):
+    if(request.method == "POST" and "save" in request.POST):
         form = AddSubjectToPerson(request.POST)
         if (form.is_valid()):
             sub = form.cleaned_data["subject"]
@@ -54,7 +54,7 @@ def create(request):
 
 def addSubject(request,NewID):
     
-    if(request.method == "POST"):
+    if(request.method == "POST" and "save" in request.POST):
         form = AddSubjectToPerson(request.POST)
         if (form.is_valid()):
             sub = form.cleaned_data["subject"]
@@ -73,9 +73,11 @@ def addSubject(request,NewID):
 
 def removeTask(request,task_id,person):
     form = AddSubjectToPerson()
-    if (request.method == "POST" & form):
-        p = Person.objects.get(id=person)
+    p = Person.objects.get(id=person)
+    if (request.method == "POST" and "deletor" in request.POST):
+        
         item = p.favoritesubject_set.get(id=task_id)
         item.delete()
         p.save()
+
     return render(request,"main/list.html",{'ls':p,'form':form})
