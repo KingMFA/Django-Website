@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{%block mainBody%}
+<ul>
+<form method="get" >
+{%for i in person %}
+
+
+
+    <li class="p-1"><button type="input" class="btn btn-light py-1" formaction="/list/{{i.id}}" >{{i}}</button></li>
+
+{%endfor%}
+</form>
+</ul>
+{%endblock%}
+

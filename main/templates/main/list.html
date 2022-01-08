@@ -1,0 +1,28 @@
+{% extends 'main/base.html'%}
+<style>
+
+</style>
+{% block mainBody %}
+<h2>{{ls}}</h2><br>
+<ul class="list-group m-3">
+
+    {%for item in ls.favoritesubject_set.all%}
+    <li class="list-group-item d-inline-flex justify-content-between container">
+
+        <p class="gx-3 col-8"><span class="fs-4 ">{{item.subject}} :</span> <br> {{item.reason}}</p>
+        <p class="text-dark-50 col-2 float-end fs-6">
+        <form method="post">{%csrf_token%}<button type="input" class="btn btn-primary-s p-1" formaction="{{ls.id}}/delete/{{item.id}}" id="{{item.id}}">X</button></form><br>{{item.date_created}}</p>
+    </li>
+
+    {%endfor%}
+</ul>
+
+<div class="container bg-secondary p-3">
+    <h2 class="text-white:">Add new to person</h2>
+    <form method="post" action="#" class="form-control form-md-inline bg-secondary-50">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type="submit" name="save">Add New Subject</button>
+    </form>
+</div>
+{% endblock%}

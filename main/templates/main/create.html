@@ -1,0 +1,10 @@
+{%extends 'main/base.html'%}
+
+
+{%block mainBody%}
+<form method="post" class="form-group" action="/create/">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-light" name="save">Create New Person</button>
+</form>
+{%endblock%}
